@@ -22,5 +22,7 @@ namespace AuthSystem.Models.Application
         [Required]
         public string EmpCode { get; set; }
         public ICollection<EmployeeDepartment> EmployeeDepartments { get; set; }
+
+        //public bool DeleteStatus { get; set; }
     }
 }

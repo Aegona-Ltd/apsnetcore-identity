@@ -66,22 +66,22 @@ namespace AuthSystem.Controllers
         //Department
         public IActionResult DepartmentList()
         {
-            List<Department> departments = _departmentRepository.GetAllDepartment().ToList();
-            List<Employee> employees = _employeeRepository.GetAllEmployee().ToList();
-            List<EmpDeptViewModel> empDepts = new List<EmpDeptViewModel>();
-            departments.ForEach(x =>
-            {
-                EmpDeptViewModel a = new EmpDeptViewModel
-                {
-                    Dept = new Department
-                    {
-                        Id = x.Id,
-                        Name = x.Name
-                    },
-                    Emps = employees
-                };
-            });
-            return View();
+            //List<Department> departments = _departmentRepository.GetAllDepartment().ToList();
+            //List<Employee> employees = _employeeRepository.GetEmpsByDept()
+            //List<EmpDeptViewModel> empDepts = new List<EmpDeptViewModel>();
+            //departments.ForEach(x =>
+            //{
+            //    EmpDeptViewModel a = new EmpDeptViewModel
+            //    {
+            //        Dept = new Department
+            //        {
+            //            Id = x.Id,
+            //            Name = x.Name
+            //        },
+            //        Emps = employees
+            //    };
+            //});
+            return View(_departmentRepository.GetAllDepartment());
         }
 
         [HttpGet]

@@ -43,8 +43,22 @@ namespace AuthSystem.Models.Application
 
         public List<Employee> GetEmpsByDept(int Id)
         {
-            List<int> a = context.EmployeeDepartments.Where(x => x.DepartmentId == Id)
-                .Select(y => y.EmployeeId).ToList();
+            List<int> a = context.EmployeeDepartments.Where(x => x.DepartmentId == Id).Select(y => y.EmployeeId).ToList();
+            List<Employee> employees = new List<Employee>();
+            foreach (var item in a)
+            {
+                employees.Add(context.Employees.Where(e => e.Id == item).Select(e => new Employee
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    Email = e.Email,
+                    Address = e.Address,
+                    Gender = e.Gender,
+                    EmpCode = e.EmpCode,
+                    //DeleteStatus = !context.EmployeeDepartments.Any(ed => ed.EmployeeId == e.Id)
+
+                }).FirstOrDefault());
+            }
             throw new NotImplementedException();
         }
 
