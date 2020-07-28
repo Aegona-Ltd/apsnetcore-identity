@@ -168,5 +168,20 @@ namespace AuthSystem.Controllers
             };
             return View(empDept);
         }
+        [HttpPost]
+        public IActionResult EditEmpToDept(List<int> Employees, int DeptId)
+        {
+            List<EmployeeDepartment> employeeDepartments = new List<EmployeeDepartment>();
+            foreach (var item in Employees)
+            {
+                employeeDepartments.Add(new EmployeeDepartment
+                {
+                    EmployeeId = item,
+                    DepartmentId = DeptId
+                });
+            }
+            _ = _employeeDepartmentRepository.EditEmpDept(employeeDepartments);
+            return RedirectToAction("DepartmentList");
+        }
     }
 }
