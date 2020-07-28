@@ -101,50 +101,6 @@ namespace AuthSystem.Controllers
             _departmentRepository.Delete(id);
             return RedirectToAction("DepartmentList");
         }
-        //Add emp to dept
-        [HttpGet]
-        public IActionResult AddEmpToDept(int id)
-        {
-            var e = _employeeRepository.GetAllEmployee().Select(x => x.Id).ToList();
-            var employees = _employeeRepository.GetAllEmployee().Select(
-                x => new SelectListItem()
-                {
-                    Text = x.Name,
-                    Value = x.Id.ToString()
-                }).ToList();
-            var dept = _departmentRepository.GetDepartment(id);
-            var empDept = new EmpDeptViewModel
-            {
-                DeptId = dept.Id,
-                Name = dept.Name,
-                Employees = employees,
-                EmpIds = e
-            };
-            return View(empDept);
-        }
-        [HttpPost]
-        public IActionResult AddEmpToDept(List<int> Employees, int DeptId)
-        {
-            List<EmployeeDepartment> employeeDepartments = new List<EmployeeDepartment>();
-            foreach (var item in Employees)
-            {
-                employeeDepartments.Add(new EmployeeDepartment
-                {
-                    EmployeeId = item,
-                    DepartmentId = DeptId
-                });
-            }
-            _ = _employeeDepartmentRepository.AddEmpDept(employeeDepartments);
-            return RedirectToAction("DepartmentList");
-        }
-        //View emp in depts
-        public IActionResult ViewEmpInDept(int Id)
-        {
-            string department = _departmentRepository.GetDepartment(Id).Name;
-            ViewBag.d = department;
-            List<Employee> employees = _employeeRepository.GetEmpsByDept(Id);       
-            return View(employees);
-        }
         //Edit emps in dept
         [HttpGet]
         public IActionResult EditEmpToDept(int id)

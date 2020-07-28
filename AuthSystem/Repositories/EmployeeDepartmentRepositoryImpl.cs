@@ -22,5 +22,20 @@ namespace AuthSystem.Models.Application
             }
             return true;
         }
+
+        public EmployeeDepartment AddEmployeeDepartment(EmployeeDepartment empDept)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(EmployeeDepartment empDept)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<EmployeeDepartment> FindEmpsByDeptId(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,7 +6,7 @@
 }
 <h4>@ViewData["Title"]</h4>
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-8">
         <div class="mb-3">
             <a class="btn btn-primary" asp-controller="Application" asp-action="DepartmentAdd">Add department</a>
         </div>
@@ -15,7 +15,6 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Employees</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -28,14 +27,8 @@
                             <td>@stt</td>
                             <td>@item.Name</td>
                             <td>
-                                <a asp-action="AddEmpToDept" asp-controller="Application"
-                                   asp-route-id="@item.Id" class="btn btn-secondary">Add employee</a>
                                 <a asp-action="EditEmpToDept" asp-controller="Application"
-                                   asp-route-id="@item.Id" class="btn btn-dark">Edit employee</a>
-                                <a asp-action="ViewEmpInDept" asp-controller="Application"
-                                   asp-route-id="@item.Id" class="btn btn-outline-dark ml-1">View list employee</a>
-                            </td>
-                            <td>                             
+                                   asp-route-id="@item.Id" class="btn btn-success">Employee</a>
                                 <a asp-action="DepartmentEdit" asp-controller="Application"
                                    asp-route-id="@item.Id" class="btn btn-info ml-1">Edit</a>
                                 <!--
