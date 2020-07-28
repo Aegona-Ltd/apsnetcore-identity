@@ -1,0 +1,58 @@
+﻿@model EditUserViewModel
+
+@{
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <h3>Remove role</h3>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row">
+                <div class="col-lg-6 mb-3 mb-lg-0">
+                    <div class="form-group">
+                        <label asp-for="Id"></label>
+                        <input asp-for="Id" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-3 mb-lg-0">
+                    <div class="form-group">
+                        <p>
+                            Current role(s):
+                            @{
+                                foreach (var role in Model.Roles)
+                                {
+                                    @role
+                                }
+                            }
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <select asp-for="Role" asp-items="Model.Rolesss" class="form-control">
+                            <option disabled selected hidden>Select a role to remove</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button type="submit" class="btn btn-danger">Remove role</button>
+                <a asp-action="Index" class="btn btn-secondary ml-1">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
