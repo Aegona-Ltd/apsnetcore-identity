@@ -180,7 +180,7 @@ namespace AuthSystem.Controllers
                     DepartmentId = DeptId
                 });
             }
-            _ = _employeeDepartmentRepository.EditEmpDept(employeeDepartments);
+            _ = _employeeDepartmentRepository.AddEmpDept(employeeDepartments);
             return RedirectToAction("DepartmentList");
         }
     }

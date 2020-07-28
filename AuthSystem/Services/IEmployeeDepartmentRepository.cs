@@ -8,6 +8,5 @@ namespace AuthSystem.Models.Application
     public interface IEmployeeDepartmentRepository
     {
         bool AddEmpDept(List<EmployeeDepartment> empDepts);
-        bool EditEmpDept(List<EmployeeDepartment> empDepts);
     }
 }

@@ -22,16 +22,5 @@ namespace AuthSystem.Models.Application
             }
             return true;
         }
-
-        public bool EditEmpDept(List<EmployeeDepartment> empDeptsChange)
-        {
-            foreach (var item in empDeptsChange)
-            {
-                var a = context.EmployeeDepartments.Attach(item);
-                a.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                context.SaveChanges();
-            }
-            return true;
-        }
     }
 }
