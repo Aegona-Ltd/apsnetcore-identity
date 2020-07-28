@@ -21,7 +21,7 @@ namespace AuthSystem.Models.Application
             return employee;
         }
 
-        public Employee Delete(int Id)
+        public void Delete(int Id)
         {
             Employee employee = context.Employees.Find(Id);
             if (employee != null)
@@ -29,7 +29,6 @@ namespace AuthSystem.Models.Application
                 context.Employees.Remove(employee);
                 context.SaveChanges();
             }
-            return employee;
         }
 
         public IEnumerable<Employee> GetAllEmployee()
@@ -40,6 +39,13 @@ namespace AuthSystem.Models.Application
         public Employee GetEmployee(int Id)
         {
             return context.Employees.Find(Id);
+        }
+
+        public List<Employee> GetEmpsByDept(int Id)
+        {
+            List<int> a = context.EmployeeDepartments.Where(x => x.DepartmentId == Id)
+                .Select(y => y.EmployeeId).ToList();
+            throw new NotImplementedException();
         }
 
         public Employee Update(Employee employeeChanges)

@@ -21,5 +21,6 @@ namespace AuthSystem.Models.Application
         public string Address { get; set; }        
         [Required]
         public string EmpCode { get; set; }
+        public ICollection<EmployeeDepartment> EmployeeDepartments { get; set; }
     }
 }

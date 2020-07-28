@@ -11,6 +11,6 @@ namespace AuthSystem.Models.Application
         IEnumerable<Department> GetAllDepartment();
         Department Add(Department department);
         Department Update(Department departmentChanges);
-        Department Delete(int Id);
+        void Delete(int Id);
     }
 }

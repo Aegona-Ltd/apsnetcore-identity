@@ -12,40 +12,15 @@ namespace AuthSystem.Models.Application
         {
             this.context = context;
         }
-        public EmployeeDepartment Add(EmployeeDepartment employeeDepartment)
-        {
-            context.EmployeeDepartments.Add(employeeDepartment);
-            context.SaveChanges();
-            return employeeDepartment;
-        }
 
-        public EmployeeDepartment Delete(int Id)
+        public bool AddEmpDept(List<EmployeeDepartment> empDepts)
         {
-            EmployeeDepartment employeeDepartment = context.EmployeeDepartments.Find(Id);
-            if (employeeDepartment != null)
+            foreach (var item in empDepts)
             {
-                context.EmployeeDepartments.Remove(employeeDepartment);
+                context.EmployeeDepartments.Add(item);
                 context.SaveChanges();
             }
-            return employeeDepartment;
-        }
-
-        public IEnumerable<EmployeeDepartment> GetAllEmployeeDepartment()
-        {
-            return context.EmployeeDepartments;
-        }
-
-        public EmployeeDepartment GetEmployeeDepartment(int Id)
-        {
-            return context.EmployeeDepartments.Find(Id);
-        }
-
-        public EmployeeDepartment Update(EmployeeDepartment employeeDepartmentChanges)
-        {
-            var employeeDepartment = context.EmployeeDepartments.Attach(employeeDepartmentChanges);
-            employeeDepartment.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            context.SaveChanges();
-            return employeeDepartmentChanges;
+            return true;
         }
     }
 }

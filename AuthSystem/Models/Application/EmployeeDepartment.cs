@@ -12,5 +12,7 @@ namespace AuthSystem.Models.Application
         public int EmployeeId { get; set; }
         [Key]
         public int DepartmentId { get; set; }
+        public Employee Employee { get; set; }
+        public Department Department { get; set; }
     }
 }

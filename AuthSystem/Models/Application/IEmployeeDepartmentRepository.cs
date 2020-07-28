@@ -7,10 +7,6 @@ namespace AuthSystem.Models.Application
 {
     public interface IEmployeeDepartmentRepository
     {
-        EmployeeDepartment GetEmployeeDepartment(int Id);
-        IEnumerable<EmployeeDepartment> GetAllEmployeeDepartment();
-        EmployeeDepartment Add(EmployeeDepartment employeeDepartment);
-        EmployeeDepartment Update(EmployeeDepartment employeeDepartmentChanges);
-        EmployeeDepartment Delete(int Id);
+        bool AddEmpDept(List<EmployeeDepartment> empDepts);
     }
 }

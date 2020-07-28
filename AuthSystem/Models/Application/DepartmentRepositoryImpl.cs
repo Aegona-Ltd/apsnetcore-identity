@@ -20,7 +20,7 @@ namespace AuthSystem.Models.Application
             return department;
         }
 
-        public Department Delete(int Id)
+        public void Delete(int Id)
         {
             Department department = context.Departments.Find(Id);
             if (department != null)
@@ -28,7 +28,6 @@ namespace AuthSystem.Models.Application
                 context.Departments.Remove(department);
                 context.SaveChanges();
             }
-            return department;
         }
 
         public IEnumerable<Department> GetAllDepartment()

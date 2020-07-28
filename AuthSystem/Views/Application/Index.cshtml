@@ -1,8 +1,47 @@
-﻿
+﻿@using Microsoft.EntityFrameworkCore;
+@model DbSet<AuthSystem.Models.Application.Employee>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "List of employees";
+    int stt = 0;
 }
-
-<h1>Index</h1>
-
+<h4>@ViewData["Title"]</h4>
+<div class="row">
+    <div class="mb-3">
+        <a class="btn btn-primary" asp-controller="Application" asp-action="EmployeeAdd">Add employee</a>
+    </div>
+    <table class="table" id="tblEmployees">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Gender</th>
+                <th scope="col">EmpCode</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    stt += 1;
+                    <tr>
+                        <td>@stt</td>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        <td>@item.Address</td>
+                        <td>@item.Gender</td>
+                        <td>@item.EmpCode</td>
+                        <td>
+                            <a asp-action="EmployeeEdit" asp-controller="Application"
+                               asp-route-id="@item.Id" class="btn btn-info ml-1">Edit</a>
+                            <a asp-action="EmployeeDelete" asp-controller="Application"
+                               asp-route-id="@item.Id" class="btn btn-danger ml-1">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

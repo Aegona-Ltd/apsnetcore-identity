@@ -1,0 +1,46 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@model DbSet<AuthSystem.Models.Application.Department>
+@{
+    ViewData["Title"] = "List of departments";
+    int stt = 0;
+}
+<h4>@ViewData["Title"]</h4>
+<div class="row">
+    <div class="col-lg-10">
+        <div class="mb-3">
+            <a class="btn btn-primary" asp-controller="Application" asp-action="DepartmentAdd">Add department</a>
+        </div>
+        <table class="table" id="tblEmployees">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">List employees</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        stt += 1;
+                        <tr>
+                            <td>@stt</td>
+                            <td>@item.Name</td>
+                            <td></td>
+                            <td>
+                                <a asp-action="AddEmpToDept" asp-controller="Application"
+                                   asp-route-id="@item.Id" class="btn btn-success">Employee</a>
+                                <a asp-action="DepartmentEdit" asp-controller="Application"
+                                   asp-route-id="@item.Id" class="btn btn-info ml-1">Edit</a>
+                                <a asp-action="DepartmentDelete" asp-controller="Application"
+                                   asp-route-id="@item.Id" class="btn btn-danger ml-1">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

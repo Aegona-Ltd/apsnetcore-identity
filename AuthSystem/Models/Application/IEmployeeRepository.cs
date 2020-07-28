@@ -11,6 +11,7 @@ namespace AuthSystem.Models.Application
         IEnumerable<Employee> GetAllEmployee();
         Employee Add(Employee employee);
         Employee Update(Employee employeeChanges);
-        Employee Delete(int Id);
+        void Delete(int Id);
+        List<Employee> GetEmpsByDept(int Id);
     }
 }
