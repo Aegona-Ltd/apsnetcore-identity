@@ -1,0 +1,18 @@
+﻿@model List<AuthSystem.Models.Application.Employee>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Department name: @ViewBag.d</h5>
+            </div>
+            <div class="card-body">
+                @{
+                    foreach (var item in Model)
+                    {
+                        <p>@item.Name</p>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

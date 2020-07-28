@@ -13,8 +13,9 @@ namespace AuthSystem.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        [Display(Name = "Select employee(s)")]
+        [Display(Name = "Select employee(s):")]
         public List<SelectListItem> Employees{ get; set; }
+        [Display(Name = "List employee:")]
         public List<Employee> Emps { get; set; }
         public Department Dept { get; set; }
         public int DeptId { get; set; }

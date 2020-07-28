@@ -59,7 +59,7 @@ namespace AuthSystem.Models.Application
 
                 }).FirstOrDefault());
             }
-            throw new NotImplementedException();
+            return employees;
         }
 
         public Employee Update(Employee employeeChanges)

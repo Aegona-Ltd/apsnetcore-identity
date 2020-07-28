@@ -66,21 +66,6 @@ namespace AuthSystem.Controllers
         //Department
         public IActionResult DepartmentList()
         {
-            //List<Department> departments = _departmentRepository.GetAllDepartment().ToList();
-            //List<Employee> employees = _employeeRepository.GetEmpsByDept()
-            //List<EmpDeptViewModel> empDepts = new List<EmpDeptViewModel>();
-            //departments.ForEach(x =>
-            //{
-            //    EmpDeptViewModel a = new EmpDeptViewModel
-            //    {
-            //        Dept = new Department
-            //        {
-            //            Id = x.Id,
-            //            Name = x.Name
-            //        },
-            //        Emps = employees
-            //    };
-            //});
             return View(_departmentRepository.GetAllDepartment());
         }
 
@@ -126,7 +111,7 @@ namespace AuthSystem.Controllers
                 {
                     Text = x.Name,
                     Value = x.Id.ToString()
-                }).ToList();         
+                }).ToList();
             var dept = _departmentRepository.GetDepartment(id);
             var empDept = new EmpDeptViewModel
             {
@@ -151,6 +136,37 @@ namespace AuthSystem.Controllers
             }
             _ = _employeeDepartmentRepository.AddEmpDept(employeeDepartments);
             return RedirectToAction("DepartmentList");
+        }
+        //View emp in depts
+        public IActionResult ViewEmpInDept(int Id)
+        {
+            string department = _departmentRepository.GetDepartment(Id).Name;
+            ViewBag.d = department;
+            List<Employee> employees = _employeeRepository.GetEmpsByDept(Id);       
+            return View(employees);
+        }
+        //Edit emps in dept
+        [HttpGet]
+        public IActionResult EditEmpToDept(int id)
+        {
+            var a = _employeeRepository.GetEmpsByDept(id).Select(x => x.Name).ToList();
+            ViewBag.a = a;
+            var e = _employeeRepository.GetAllEmployee().Select(x => x.Id).ToList();
+            var employees = _employeeRepository.GetAllEmployee().Select(
+                x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                }).ToList();
+            var dept = _departmentRepository.GetDepartment(id);
+            var empDept = new EmpDeptViewModel
+            {
+                DeptId = dept.Id,
+                Name = dept.Name,
+                Employees = employees,
+                EmpIds = e
+            };
+            return View(empDept);
         }
     }
 }
