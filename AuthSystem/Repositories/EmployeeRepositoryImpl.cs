@@ -55,7 +55,6 @@ namespace AuthSystem.Models.Application
                     Address = e.Address,
                     Gender = e.Gender,
                     EmpCode = e.EmpCode,
-                    //DeleteStatus = !context.EmployeeDepartments.Any(ed => ed.EmployeeId == e.Id)
 
                 }).FirstOrDefault());
             }

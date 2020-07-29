@@ -14,9 +14,9 @@ namespace AuthSystem.Controllers
     [Authorize]
     public class ApplicationController : Controller
     {
-        private IEmployeeRepository _employeeRepository;
-        private IDepartmentRepository _departmentRepository;
-        private IEmployeeDepartmentRepository _employeeDepartmentRepository;
+        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IDepartmentRepository _departmentRepository;
+        private readonly IEmployeeDepartmentRepository _employeeDepartmentRepository;
 
         public ApplicationController(IEmployeeRepository employeeRepository,
             IDepartmentRepository departmentRepository,
@@ -127,17 +127,27 @@ namespace AuthSystem.Controllers
         [HttpPost]
         public IActionResult EditEmpToDept(List<int> Employees, int DeptId)
         {
-            List<EmployeeDepartment> employeeDepartments = new List<EmployeeDepartment>();
-            foreach (var item in Employees)
+            if(Employees != null && Employees.Count() > 0)
             {
-                employeeDepartments.Add(new EmployeeDepartment
+                List<EmployeeDepartment> empDepts = _employeeDepartmentRepository.FindEmpsByDeptId(DeptId);
+                if(empDepts != null)
                 {
-                    EmployeeId = item,
-                    DepartmentId = DeptId
-                });
-            }
-            _ = _employeeDepartmentRepository.AddEmpDept(employeeDepartments);
-            return RedirectToAction("DepartmentList");
+                    foreach (var empDept in empDepts)
+                    {
+                        _employeeDepartmentRepository.Delete(empDept);
+                    }
+                }
+                foreach (var item in Employees)
+                {
+                    EmployeeDepartment employeeDepartment = new EmployeeDepartment
+                    {
+                        EmployeeId = item,
+                        DepartmentId = DeptId
+                    };
+                    _employeeDepartmentRepository.AddEmployeeDepartment(employeeDepartment);
+                }
+            }         
+            return RedirectToAction("EditEmpToDept");
         }
     }
 }

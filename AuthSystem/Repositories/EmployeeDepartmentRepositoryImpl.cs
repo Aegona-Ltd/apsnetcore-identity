@@ -12,30 +12,23 @@ namespace AuthSystem.Models.Application
         {
             this.context = context;
         }
-
-        public bool AddEmpDept(List<EmployeeDepartment> empDepts)
-        {
-            foreach (var item in empDepts)
-            {
-                context.EmployeeDepartments.Add(item);
-                context.SaveChanges();
-            }
-            return true;
-        }
-
         public EmployeeDepartment AddEmployeeDepartment(EmployeeDepartment empDept)
         {
-            throw new NotImplementedException();
+            context.EmployeeDepartments.Add(empDept);
+            context.SaveChanges();
+            return empDept;
         }
 
         public void Delete(EmployeeDepartment empDept)
         {
-            throw new NotImplementedException();
+            context.EmployeeDepartments.Remove(empDept);
+            context.SaveChanges();
         }
 
         public List<EmployeeDepartment> FindEmpsByDeptId(int Id)
         {
-            throw new NotImplementedException();
+            List<EmployeeDepartment> a = context.EmployeeDepartments.Where(x => x.DepartmentId == Id).ToList();
+            return a;
         }
     }
 }
