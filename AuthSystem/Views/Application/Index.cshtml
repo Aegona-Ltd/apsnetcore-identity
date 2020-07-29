@@ -36,9 +36,8 @@
                         <td>
                             <a asp-action="EmployeeEdit" asp-controller="Application"
                                asp-route-id="@item.Id" class="btn btn-info ml-1">Edit</a>
-                            <!--
-    <a asp-action="EmployeeDelete" asp-controller="Application"
-       asp-route-id="item.Id" class="btn btn-danger ml-1">Delete</a>-->
+                            <a asp-action="EmployeeDelete" asp-controller="Application"
+                               asp-route-id="@item.Id" class="btn btn-danger ml-1">Delete</a>
                         </td>
                     </tr>
                 }

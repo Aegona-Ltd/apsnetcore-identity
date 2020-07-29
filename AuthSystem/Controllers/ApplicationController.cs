@@ -29,7 +29,8 @@ namespace AuthSystem.Controllers
         //Employee
         public IActionResult Index()
         {
-            return View(_employeeRepository.GetAllEmployee());
+            var employees = _employeeRepository.GetAllEmployee();
+            return View(employees);
         }
         [HttpGet]
         public IActionResult EmployeeAdd()
@@ -59,14 +60,15 @@ namespace AuthSystem.Controllers
         [HttpGet]
         public IActionResult EmployeeDelete(int id)
         {
-            _employeeRepository.Delete(id);
+            _employeeRepository.Delete(id);           
             return RedirectToAction("Index");
         }
 
         //Department
         public IActionResult DepartmentList()
         {
-            return View(_departmentRepository.GetAllDepartment());
+            var departments = _departmentRepository.GetAllDepartment();
+            return View(departments);
         }
 
         [HttpGet]
@@ -129,6 +131,7 @@ namespace AuthSystem.Controllers
         {
             if(Employees != null && Employees.Count() > 0)
             {
+                //Delete nếu ko chọn
                 List<EmployeeDepartment> empDepts = _employeeDepartmentRepository.FindEmpsByDeptId(DeptId);
                 if(empDepts != null)
                 {
@@ -137,6 +140,7 @@ namespace AuthSystem.Controllers
                         _employeeDepartmentRepository.Delete(empDept);
                     }
                 }
+                //Add 
                 foreach (var item in Employees)
                 {
                     EmployeeDepartment employeeDepartment = new EmployeeDepartment

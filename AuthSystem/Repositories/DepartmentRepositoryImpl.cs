@@ -23,10 +23,14 @@ namespace AuthSystem.Models.Application
         public void Delete(int Id)
         {
             Department department = context.Departments.Find(Id);
+            var checkDept = context.EmployeeDepartments.Any(x => x.DepartmentId == Id);
             if (department != null)
             {
-                context.Departments.Remove(department);
-                context.SaveChanges();
+                if (!checkDept)
+                {
+                    context.Departments.Remove(department);
+                    context.SaveChanges();
+                }
             }
         }
 

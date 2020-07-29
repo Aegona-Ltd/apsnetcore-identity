@@ -24,10 +24,14 @@ namespace AuthSystem.Models.Application
         public void Delete(int Id)
         {
             Employee employee = context.Employees.Find(Id);
+            var checkEmp = context.EmployeeDepartments.Any(x => x.EmployeeId == Id);
             if (employee != null)
             {
-                context.Employees.Remove(employee);
-                context.SaveChanges();
+                if (!checkEmp)
+                {
+                    context.Employees.Remove(employee);
+                    context.SaveChanges();
+                }
             }
         }
 
