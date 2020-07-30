@@ -60,7 +60,7 @@ namespace AuthSystem.Controllers
         [HttpGet]
         public IActionResult EmployeeDelete(int id)
         {
-            _employeeRepository.Delete(id);           
+            _employeeRepository.Delete(id);
             return RedirectToAction("Index");
         }
 
@@ -129,28 +129,25 @@ namespace AuthSystem.Controllers
         [HttpPost]
         public IActionResult EditEmpToDept(List<int> Employees, int DeptId)
         {
-            if(Employees != null && Employees.Count() > 0)
+            List<EmployeeDepartment> empDepts = _employeeDepartmentRepository.FindEmpsByDeptId(DeptId);
+            //Delete
+            if (empDepts != null)
             {
-                //Delete nếu ko chọn
-                List<EmployeeDepartment> empDepts = _employeeDepartmentRepository.FindEmpsByDeptId(DeptId);
-                if(empDepts != null)
+                foreach (var empDept in empDepts)
                 {
-                    foreach (var empDept in empDepts)
-                    {
-                        _employeeDepartmentRepository.Delete(empDept);
-                    }
+                    _employeeDepartmentRepository.Delete(empDept);
                 }
-                //Add 
-                foreach (var item in Employees)
+            }
+            //Add 
+            foreach (var item in Employees)
+            {
+                EmployeeDepartment employeeDepartment = new EmployeeDepartment
                 {
-                    EmployeeDepartment employeeDepartment = new EmployeeDepartment
-                    {
-                        EmployeeId = item,
-                        DepartmentId = DeptId
-                    };
-                    _employeeDepartmentRepository.AddEmployeeDepartment(employeeDepartment);
-                }
-            }         
+                    EmployeeId = item,
+                    DepartmentId = DeptId
+                };
+                _employeeDepartmentRepository.AddEmployeeDepartment(employeeDepartment);
+            }
             return RedirectToAction("EditEmpToDept");
         }
     }
