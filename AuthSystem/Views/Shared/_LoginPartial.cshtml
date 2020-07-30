@@ -15,6 +15,12 @@
             if (User.IsInRole("Admin") || User.IsInRole("UserList"))
             {
                 <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">User management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="DepartmentList">Department</a>
                 </li>
                 <li class="nav-item">

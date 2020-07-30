@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AuthSystem.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, UserList")]
     public class ApplicationController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
@@ -149,6 +149,34 @@ namespace AuthSystem.Controllers
                 _employeeDepartmentRepository.AddEmployeeDepartment(employeeDepartment);
             }
             return RedirectToAction("EditEmpToDept");
+        }
+        //Dashboard
+        public IActionResult Dashboard()
+        {
+            //Bar chart
+            var deptNames = _departmentRepository.GetAllDepartment().Select(x => x.Name).ToList();          
+            var deptIds = _departmentRepository.GetAllDepartment().Select(x => x.Id).ToList();
+            List<int> count = new List<int>();
+            foreach (var deptId in deptIds)
+            {
+                count.Add(_employeeDepartmentRepository.FindEmpsByDeptId(deptId).Count());
+            }
+            var countEmps = count;
+            ViewBag.DeptNames = deptNames;
+            ViewBag.CountEmps = countEmps;
+
+            //Show gender percentage to pie chart
+            var employees = _employeeRepository.GetAllEmployee().ToList();
+            var genders = _employeeRepository.GetAllEmployee().Select(x => x.Gender).Distinct().ToList();
+            List<int> countG = new List<int>();
+            foreach (var gender in genders)
+            {
+                countG.Add(employees.Count(x => x.Gender.Equals(gender)));
+            }
+            var countGenders = countG;
+            ViewBag.Genders = genders;
+            ViewBag.CountGenders = countGenders;
+            return View();
         }
     }
 }

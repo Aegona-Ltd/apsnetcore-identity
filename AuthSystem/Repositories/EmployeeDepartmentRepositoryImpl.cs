@@ -30,5 +30,10 @@ namespace AuthSystem.Models.Application
             List<EmployeeDepartment> a = context.EmployeeDepartments.Where(x => x.DepartmentId == Id).ToList();
             return a;
         }
+
+        public IEnumerable<EmployeeDepartment> GetEmployeeDepartments()
+        {
+            return context.EmployeeDepartments;
+        }
     }
 }

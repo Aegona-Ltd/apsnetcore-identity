@@ -10,5 +10,6 @@ namespace AuthSystem.Models.Application
         EmployeeDepartment AddEmployeeDepartment(EmployeeDepartment empDept);
         void Delete(EmployeeDepartment empDept);
         List<EmployeeDepartment> FindEmpsByDeptId(int Id);
+        IEnumerable<EmployeeDepartment> GetEmployeeDepartments();
     }
 }
