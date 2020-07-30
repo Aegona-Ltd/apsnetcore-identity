@@ -4,14 +4,18 @@ This repository includes:
 - Demo CRUD Many-to-many relationship using Entity Framework Core with tables Employee, Department
 - Demo Chart.js showing data in Admin Dashboard
 
-Screenshot for the project example:
+Project screenshot:
 -  User management
+![Screenshot1](https://i.imgur.com/8yVACiB.png)
 
 -  Employee management
+![Screenshot2](https://i.imgur.com/cMvAL8h.png)
 
 -  Department management
+![Screenshot3](https://i.imgur.com/X3C53MW.png)
 
 -  Add, update employee into department
+![Screenshot4](https://i.imgur.com/GIwcP2Y.png)
 
 -  Admin dashboard
 
