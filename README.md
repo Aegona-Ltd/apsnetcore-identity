@@ -2,6 +2,7 @@
 This repository includes: 
 - Demo Login and Register using Identity
 - Demo CRUD Many-to-many relationship using Entity Framework Core with tables Employee, Department
+- Demo Chart.js showing data in Admin Dashboard
 
 Screenshot for the project example:
 -  User management
@@ -12,6 +13,7 @@ Screenshot for the project example:
 
 -  Add, update employee into department
 
+-  Admin dashboard
 
 ## Instruction
 -  Login first with email "admin@gmail.com" and password "admin".
