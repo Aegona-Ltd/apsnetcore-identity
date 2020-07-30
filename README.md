@@ -5,13 +5,13 @@ This repository includes:
 
 Screenshot for the project example:
 -  User management
-![Screenshot1](AuthSystem/Images/Screenshot1.png)
+
 -  Employee management
-![Screenshot2](AuthSystem/Images/Screenshot2.png)
+
 -  Department management
-![Screenshot3](AuthSystem/Images/Screenshot3.png)
+
 -  Add, update employee into department
-![Screenshot4](AuthSystem/Images/Screenshot4.png)
+
 
 ## Instruction
 -  Login first with email "admin@gmail.com" and password "admin".
