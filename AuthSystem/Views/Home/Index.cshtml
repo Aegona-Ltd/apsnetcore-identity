@@ -6,72 +6,78 @@
     int stt = 0;
 }
 @inject UserManager<ApplicationUser> userManager
-    <div class="row">
-        <div class="mb-3">
+<div class="row">
+    <div class="mb-3">
+        @{
+            if (User.IsInRole("Admin") || User.IsInRole("UserCreate"))
+            {
+                <a class="btn btn-primary" href="/identity/account/register">Create user</a>
+            }
+        }
+    </div>
+    <table class="table" id="tblUsers">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Role</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
             @{
-                if (User.IsInRole("Admin") || User.IsInRole("UserCreate"))
+                foreach (var item in Model)
                 {
-                    <a class="btn btn-primary" href="/identity/account/register">Create user</a>
+                    stt += 1;
+                    <tr>
+                        <td>@stt</td>
+                        <td>@item.user.FirstName</td>
+                        <td>@item.user.LastName</td>
+                        <td>@item.user.Email</td>
+                        <td>@item.user.Address</td>
+                        <td>
+                            @{
+                                foreach (var role in item.roles)
+                                {
+                                    @role
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (!item.user.Email.Equals("admin@gmail.com"))
+                                {
+                                    <p>
+                                        <a asp-action="EditUser" asp-controller="Home"
+                                           asp-route-id="@item.user.Id" class="btn btn-info">Edit user</a>
+                                        @{
+                                            if (User.IsInRole("Admin"))
+                                            {
+                                                <a asp-action="DeleteUser" asp-controller="Home"
+                                                   asp-route-id="@item.user.Id" class="btn btn-danger ml-1">Delete user</a>
+                                            }
+                                        }
+                                    </p>
+                                    <p>
+                                        @{
+                                            if (User.IsInRole("Admin"))
+                                            {
+                                                <a asp-action="AddRole" asp-controller="Home"
+                                                   asp-route-id="@item.user.Id" class="btn btn-outline-dark">Add role</a>
+                                                <a asp-action="RemoveRole" asp-controller="Home"
+                                                   asp-route-id="@item.user.Id" class="btn btn-warning ml-1">Remove role</a>
+                                            }
+                                        }
+                                    </p>
+                                }
+                            }
+                        </td>
+                    </tr>
                 }
             }
-        </div>
-        <table class="table" id="tblUsers">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First name</th>
-                    <th scope="col">Last name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    foreach (var item in Model)
-                    {
-                        stt += 1;
-                        <tr>
-                            <td>@stt</td>
-                            <td>@item.user.FirstName</td>
-                            <td>@item.user.LastName</td>
-                            <td>@item.user.Email</td>
-                            <td>@item.user.Address</td>
-                            <td>
-                                @{
-                                    foreach (var role in item.roles)
-                                    {
-                                        @role
-                                    }
-                                }
-                            </td>
-                            <td>
-                                @{
-                                    if (!item.user.Email.Equals("admin@gmail.com"))
-                                    {
-                                        <div class="row justify-content-center">
-                                            <a asp-action="EditUser" asp-controller="Home"
-                                               asp-route-id="@item.user.Id" class="btn btn-info">Edit user</a>
-                                            @{
-                                                if (User.IsInRole("Admin"))
-                                                {
-                                                    <a asp-action="AddRole" asp-controller="Home"
-                                                       asp-route-id="@item.user.Id" class="btn btn-success ml-1">(+) Role</a>
-                                                    <a asp-action="RemoveRole" asp-controller="Home"
-                                                       asp-route-id="@item.user.Id" class="btn btn-warning ml-1">(x) Role</a>
-                                                    <form method="post" asp-action="DeleteUser" asp-route-id="@item.user.Id">
-                                                        <button type="submit" class="btn btn-danger ml-1">(x) User</button>
-                                                    </form>
-                                                }
-                                            }
-                                        </div>
-                                    }
-                                }
-                            </td>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+</div>

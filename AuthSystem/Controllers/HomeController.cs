@@ -168,7 +168,7 @@ namespace AuthSystem.Controllers
         }
         //Delete user
         [Authorize(Roles = "Admin")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);

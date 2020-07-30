@@ -12,12 +12,15 @@
                     <a class="btn btn-primary" id="login" asp-area="Identity" asp-page="/Account/Register">Create user</a>
                 </li>
             }
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="DepartmentList">Department</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Index">Employee</a>
-            </li>
+            if (User.IsInRole("Admin") || User.IsInRole("UserList"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="DepartmentList">Department</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Index">Employee</a>
+                </li>
+            }
             <li class="nav-item">
                 <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="" title="Manage">Hello @UserManager.GetUserName(User)!</a>
             </li>
