@@ -1,6 +1,6 @@
 # ASP.NET Core project using Identity and Entity Framework Core
 This repository includes: 
-- Demo Login and Register using Identity
+- Demo Authorization, Authentication using Identity
 - Demo CRUD Many-to-many relationship using Entity Framework Core with tables Employee, Department
 - Demo Chart.js showing data in Admin Dashboard
 
