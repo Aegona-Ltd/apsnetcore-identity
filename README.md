@@ -11,7 +11,7 @@ This repository includes:
 ## Documentation
 The ASP.NET Core project documentation is available here. https://github.com/Aegona-Ltd/apsnetcore-identity
 
-## Project screenshot 
+## Screenshot 
 -  User management
 ![Screenshot1](https://i.imgur.com/8yVACiB.png)
 
