@@ -26,15 +26,13 @@
             <div class="row">
                 <div class="col-lg-6 mb-3 mb-lg-0">
                     <div class="form-group">
-                        <p>
-                            Current role(s):
-                            @{
-                                foreach (var role in Model.Roles)
-                                {
-                                    @role
-                                }
+                        Current role(s):
+                        @{
+                            foreach (var role in Model.Roles)
+                            {
+                                <p>@role</p>
                             }
-                        </p>
+                        }
                     </div>
                 </div>
                 <div class="col-lg-6">
