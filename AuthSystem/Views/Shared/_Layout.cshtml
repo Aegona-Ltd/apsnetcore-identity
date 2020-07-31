@@ -40,6 +40,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/Chart.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
@@ -72,6 +73,21 @@
             title: {
                 display: true,
                 text: 'Employee gender percentage'
+            },
+            plugins: {
+                labels:
+                    [
+                        {
+                            render: 'label',
+                            arc: true,
+                            fontColor: '#000',
+                            position: 'outside'
+                        },
+                        {
+                            render: 'percentage',
+                            precision: 1
+                        }
+                    ]              
             }
         }
     });
@@ -109,9 +125,19 @@
                 yAxes: [{
                     stacked: true,
                     ticks: {
-                        stepSize: 1
+                        stepSize: 1,
+                        beginAtZero: true,
+                        steps: 1,
+                        stepValue: 1,
+                        max: 10
                     }
                 }]
+            },
+            plugins: {
+                labels:        
+                   {
+                        render: 'value',
+                   }                   
             }
         }
     });
