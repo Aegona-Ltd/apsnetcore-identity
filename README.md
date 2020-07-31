@@ -16,6 +16,6 @@ The ASP.NET Core project documentation is available here. https://github.com/Aeg
 ![Screenshot1](https://i.imgur.com/8yVACiB.png)
 
 -  Admin dashboard
-![Screenshot2](https://i.imgur.com/nFqexeV.png)
+![Screenshot2](https://i.imgur.com/AqzvOWv.png)
 
 
