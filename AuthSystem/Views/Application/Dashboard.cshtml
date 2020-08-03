@@ -18,3 +18,103 @@
         </div>
     </div>
 </div>
+@section scripts {
+    <script>
+    //Pie chart show employee genders percentage
+    var genders = @Html.Raw(Json.Serialize(ViewBag.Genders));
+    var countGenders = @Html.Raw(Json.Serialize(ViewBag.CountGenders));
+    var pctx = document.getElementById("pie_chart");
+    var pieChart = new Chart(pctx, {
+        type: 'pie',
+        data: {
+            labels: genders,
+            datasets: [{
+                label: 'Employee gender',
+                data: countGenders,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            //cutoutPercentage: 20,
+            //responsive: false,
+            title: {
+                display: true,
+                text: 'Employee gender percentage'
+            },
+            plugins: {
+                labels:
+                    [
+                        {
+                            render: 'label',
+                            arc: true,
+                            fontColor: '#000',
+                            position: 'outside'
+                        },
+                        {
+                            render: 'percentage',
+                            precision: 1
+                        }
+                    ]
+            }
+        }
+    });
+
+    //Bar chart show number of employees in each departments
+    var deptNames = @Html.Raw(Json.Serialize(ViewBag.DeptNames));
+    var countEmps = @Html.Raw(Json.Serialize(ViewBag.CountEmps));
+    var bctx = document.getElementById("bar_chart");
+    var barChart = new Chart(bctx, {
+        type: 'bar',
+        data: {
+            labels: deptNames,
+            datasets: [
+                {
+                    barThickness: 40,
+                    maxBarThickness: 60,
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    data: countEmps
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Number of employees in each department'
+            },
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }],
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                        stepSize: 1,
+                        beginAtZero: true,
+                        steps: 1,
+                        stepValue: 1,
+                        max: 10
+                    }
+                }]
+            },
+            plugins: {
+                labels:
+                   {
+                        render: 'value',
+                   }
+            }
+        }
+    });
+    </script>
+}
